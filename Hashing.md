@@ -1,4 +1,10 @@
 # Hashing 
+## Contents
+  - [Overview](#overview)
+  - [Hash Functions](#hash-functions)
+    - [Integer data](#integer-data)
+    - [Variable-length data](#variable-length-data)
+## Overview
 - Feature
   - The process of finding a record using some computation to map its key value to a position in the array is called **hashing**.
   - The function that maps key values to position is called a **hash function** and will be denoted by **h**.
@@ -39,7 +45,8 @@
     - Distribution-dependent hash function is requried to aviod assigning clusters of related key values to the same hash table slot.
   
  [Algorithm for hashing integer and variable-length data](https://en.wikipedia.org/wiki/Hash_function "hash function in wikepedia")\
- Integer type:
+ 
+  ### Integer data:
   - Identity hash function\
     If data is small enough, data itself (reinterpreted as an integer) can be used as hash value.
     - "small enough" denpends on the size of the type that is used as the hashed value. For example, in Java, the hash code is a 32-bit integer. Thus the 32-bit integer Integer and 32-bit floating-point Float objects can simply use the value directly.
@@ -78,3 +85,6 @@
      
    - Other hashing\
     Other hashing function for integer data type shown in wikipedia: Algebraic coding, Unique permutation hashing, Multiplicative hashing, Fibonacci hashing, Customized hash function 
+    
+### Variable-length data
+  When data values are long (or variable-length) character strings, their distribution is usually very uneven, with complicated dependencies. For such data, it is prudent to use a hash function that depends on all characters of the string.
