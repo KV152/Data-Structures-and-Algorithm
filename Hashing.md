@@ -37,3 +37,44 @@
     - Aim to desing evenly ditribution hash function.
  - Knowing something about the distribution of the incoming keys. 
     - Distribution-dependent hash function is requried to aviod assigning clusters of related key values to the same hash table slot.
+  
+ [Algorithm for hashing integer and variable-length data](https://en.wikipedia.org/wiki/Hash_function "hash function in wikepedia")\
+ Integer type:
+  - Identity hash function\
+    If data is small enough, data itself (reinterpreted as an integer) can be used as hash value.
+    - "small enough" denpends on the size of the type that is used as the hashed value. For example, in Java, the hash code is a 32-bit integer. Thus the 32-bit integer Integer and 32-bit floating-point Float objects can simply use the value directly.
+    
+  - Trivial hash function\
+    If keys are uniformly or sufficiently uniformly distributed over the key space, so that the key values are essentially random, they may be considered to be already 'hashed'.
+    
+  - Folding \
+    There are 2 types of folding methods called **Fold shift** and **Fold boundary**. Following contents based on [answer found in stackoverlow](https://stackoverflow.com/questions/36565101/what-is-folding-technique-in-hashing-and-how-to-implement-it) and on website [TechMight](http://techmightsolutions.blogspot.com/2012/07/hash-function-folding.html)
+    - Fold Shift
+      - In fold shift, the key value is divided into parts whose size matches the size of the required address. Then the left and right parts are shifted and added with the middle part.
+      - For example: Key: 123456789 and size of required address is 3 digits.
+        - 123 + 456 + 789 = 1368. To reduce the size to 3, either 1 or 8 is removed and accordingly the key would be 368 or 136 respectively.
+    - Fold boundary
+      - Again dividing the key in parts whose size matches the size of required address. But, size of middle part can be smaller than the required address.
+      - In fold boundary, the left and right numbers are folded on a fixed boundary between them and the center number. The two outside values are thus reversed.
+      - For example: Key: 123456789 and size of required address is 3 digits
+        - 321 (reversed)+ 456 + 987 (reversed) = 1764(discard 1 or 4)
+        
+  - Mid-squares\
+    Squaring the input and extracting an appropriate number of middle digits or bits. 
+    - For example: 
+      - If the input is 123,456,789 and the hash table size 10,000
+      - Squaring the key produces 1.524157875019e16, so the hash code is taken as the middle 4 digits of the 17-digit number (ignoring the high digit) 8750.
+    - Good if there are not a lot of leading or trailing zeros in the key. 
+    - Not good, if an arbitrary key is not a good multiplier. 
+   
+   - Division hashing\
+    A standard technique is to use a modulo function on the key, by selecting a divisor M which is a prime number close to the table size, so h (K) = K mod M. The table size is usually a power of 2. This gives a distribution from {0, M − 1}.
+    - Good for large number of key sets and sufficent randomly.
+    - Not good due to division might be 10 times slower than multiply.
+    - Not good due to clustered keys (e.g. 123000, 456000)
+   
+   - Zobrist hashing\
+     Zobrist Hashing is a hashing function that is widely used in 2 player board games. It is the most common hashing function used in transposition table. Transposition tables basically store the evaluated values of previous board states, so that if they are encountered again we simply retrieve the stored value from the transposition table. [Source](https://www.geeksforgeeks.org/minimax-algorithm-in-game-theory-set-5-zobrist-hashing/)
+     
+   - Other hashing\
+    Other hashing function for integer data type shown in wikipedia: Algebraic coding, Unique permutation hashing, Multiplicative hashing, Fibonacci hashing, Customized hash function 
