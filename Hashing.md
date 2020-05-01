@@ -4,6 +4,9 @@
   - [Hash Functions](#hash-functions)
     - [Integer data](#integer-data)
     - [Variable-length data](#variable-length-data)
+  - [Collision resolution techniques](#collision-resolution-techniques)
+    - [Open hashing](#open-hashing)
+    - [Closed hashing](#closed-hashing)
 ## Overview
 - Feature
   - The process of finding a record using some computation to map its key value to a position in the array is called **hashing**.
@@ -106,6 +109,15 @@
     
 ## Collision resolution techniques 
   Collision resolution techniques can be broken into two classes: **open hashing** (also called **separete chaining**) and closed hashing (also called **open addressing**). The difference between the two has to do with wheather collision are stored outside the table (open hashing), or whether collisions result in storing one of the records at another slot in the table (closed hashing).
+  Overview of hash table (Open hashing and Closed hashing) can be found in [wikipedia](https://en.wikipedia.org/wiki/Hash_table#Separate_chaining "hash table").
 ### Open hashing
+  Each bucket is independent, and has some sort of list of entries with the same index. The time for hash table operations is the time to find the bucket (which is constant) plus the time for the list operation.\
+  Each bucket has zero or one entries, and sometimes two or three, but rarely more than that. Therefore, structures that are efficient in time and space for these cases are preferred.\
+  Illustration of open hash shown in below ![Open hash](https://raw.githubusercontent.com/KV152/Data-Structures-and-Algorithm/master/figures/openhash.png)\
+  The most popular implenation technique of open hash is by using linked list store data. All records that hash to a particular slot are placed on that slot's linked list. Records within a slot's list can be ordered in several ways: by **insertion order**, by **key value order**, or by **frequency-of-access order**. Ordering the list by key value provides an advantage in the case of an unsuccessful search, because we know to stop searching the list once we encounter a key taht is greater than the one being searched for.\
+  Open hashing is most appropriate when the hash table is kept in main memory, with the lists implemented by a standard in-memory linked list. For open hashing, the worst-case scenario is when all entries are inserted into the same bucket, in which case the hash table is ineffective and the cost is that of searching the bucket data structure. Open hashing also inherit the disadvantages of linked lists. When storing small keys and values, the space overhead of the next pointer in each entry record can be significant. An additional disadvantage is that traversing a linked list has poor cache performance, making the processor cache ineffective.
+  
+  Other implemation techniques: Open hashing with list head cells, self-balancing binary search tree, array hash table, dynamic perfect hashing.
+  
 ### Closed hashing
      
