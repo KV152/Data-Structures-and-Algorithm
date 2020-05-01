@@ -16,11 +16,11 @@
   - Cons
     - Not good for multiple records with the same key value (duplicate).
     - Not good for answering range searches.
-    - Not good to visiting the records in key order.
+    - Not good for visiting the records in key order.
   - Pros
     - Good for accessing involves only exact-match queries.
     - Good for both in-memory and disk-based searching.
-    - One of two most widely used methods for organizing large databases stored on disk (the other is B-tree).
+    - One of the two most widely used methods for organizing large databases stored on disk (the other is B-tree).
  
 - Collision
 
@@ -32,7 +32,7 @@
   Perfect hashing is a system in which records are hased such that there are no collisions. Perfect hashing is efficient but selecting perfect hash function can be expensive. It might be worthwhile when exremely efficient search performance is required. (Searching for data on a read-only CD, where database will never be changed and time for each access is expensive.)
 
 ## Hash Functions 
-  Goal: Sotres the actual records in the collection such that each slot in the hash table has equal probability of being filled.
+  Goal: Storing the actual records in the collection such that each slot in the hash table has equal probability of being filled.
   However input data values might be prooly distributed.
   - Natural frequency distributions tends to follow a common pattern where a few of the entities occur frequently while most entities occur relatively rarely. (population in country)
   - Collected data are likely to be skewed in some ways. (price might be end in 0 5 or 9)
@@ -44,7 +44,7 @@
  - Knowing something about the distribution of the incoming keys. 
     - Distribution-dependent hash function is requried to aviod assigning clusters of related key values to the same hash table slot.
   
- [Algorithm for hashing integer and variable-length data](https://en.wikipedia.org/wiki/Hash_function "hash function in wikepedia")\
+ [Algorithm for hashing integer and variable-length data](https://en.wikipedia.org/wiki/Hash_function "hash function in wikepedia")
  
   ### Integer data:
   - Identity hash function\
@@ -84,7 +84,28 @@
      Zobrist Hashing is a hashing function that is widely used in 2 player board games. It is the most common hashing function used in transposition table. Transposition tables basically store the evaluated values of previous board states, so that if they are encountered again we simply retrieve the stored value from the transposition table. [Source](https://www.geeksforgeeks.org/minimax-algorithm-in-game-theory-set-5-zobrist-hashing/)
      
    - Other hashing\
-    Other hashing function for integer data type shown in wikipedia: Algebraic coding, Unique permutation hashing, Multiplicative hashing, Fibonacci hashing, Customized hash function 
+    Other hashing function for integer data shown in wikipedia: Algebraic coding, Unique permutation hashing, Multiplicative hashing, Fibonacci hashing, Customized hash function 
     
 ### Variable-length data
   When data values are long (or variable-length) character strings, their distribution is usually very uneven, with complicated dependencies. For such data, it is prudent to use a hash function that depends on all characters of the string.
+  - Middle and ends\
+    Adding the first and last n characters of a string along with the length, or forming a word-size hash from the middle 4 characters of a string.
+    - Saving iterating over the (potentially long) string.
+    - Good as a custom hash function if the structure of the keys is such that either the middle, ends or other field(s) are zero or some other invariant constant that doesn't differentiate the keys; then the invariant parts of the keys can be ignored.  
+    - Not good when clustering or other pathologies in the key set.
+   
+   - Character folding\
+   Adding up the integer values of all the characters in the string. A better idea is to multiply the hash total by a constant, typically a sizeable prime number, before adding in the next character, ignoring overflow. Using exclusive 'or' instead of add is also a plausible alternative. The final operation would be a modulo, mask, or other function to reduce the word value to an index the size of the table.
+    - Not good when information may cluster in the upper or lower bits of the bytes, which clustering will remain in the hashed result and cause more collisions than a proper randomizing hash.
+    
+    - Word length folding\
+     If 8-bit character strings are not hashed by processing one character at a time, but by interpreting the string as an array of 32 bit or 64 bit integers and hashing/accumulating these "wide word" integer values by means of arithmetic operations (e.g. multiplication by constant and bit-shifting). The final word, which may have unoccupied byte positions, is filled with zeros or a specified "randomizing" value before being folded into the hash. The accumulated hash code is reduced by a final modulo or other operation to yield an index into the table. (Mentioned in example 9.8 in Page 329)
+     
+     - Other hashing\
+    Other hashing function for variable-length data shown in wikipedia: Radix conversion hashing, Rolling hash.
+    
+## Collision resolution techniques 
+  Collision resolution techniques can be broken into two classes: **open hashing** (also called **separete chaining**) and closed hashing (also called **open addressing**). The difference between the two has to do with wheather collision are stored outside the table (open hashing), or whether collisions result in storing one of the records at another slot in the table (closed hashing).
+### Open hashing
+### Closed hashing
+     
