@@ -83,7 +83,7 @@
    - Zobrist hashing\
      Zobrist Hashing is a hashing function that is widely used in 2 player board games. It is the most common hashing function used in transposition table. Transposition tables basically store the evaluated values of previous board states, so that if they are encountered again we simply retrieve the stored value from the transposition table. [Source](https://www.geeksforgeeks.org/minimax-algorithm-in-game-theory-set-5-zobrist-hashing/)
      
-   - Other hashing\
+   - Other hashings\
     Other hashing function for integer data shown in wikipedia: Algebraic coding, Unique permutation hashing, Multiplicative hashing, Fibonacci hashing, Customized hash function 
     
 ### Variable-length data
@@ -98,11 +98,11 @@
    Adding up the integer values of all the characters in the string. A better idea is to multiply the hash total by a constant, typically a sizeable prime number, before adding in the next character, ignoring overflow. Using exclusive 'or' instead of add is also a plausible alternative. The final operation would be a modulo, mask, or other function to reduce the word value to an index the size of the table.
     - Not good when information may cluster in the upper or lower bits of the bytes, which clustering will remain in the hashed result and cause more collisions than a proper randomizing hash.
     
-    - Word length folding\
+   - Word length folding\
      If 8-bit character strings are not hashed by processing one character at a time, but by interpreting the string as an array of 32 bit or 64 bit integers and hashing/accumulating these "wide word" integer values by means of arithmetic operations (e.g. multiplication by constant and bit-shifting). The final word, which may have unoccupied byte positions, is filled with zeros or a specified "randomizing" value before being folded into the hash. The accumulated hash code is reduced by a final modulo or other operation to yield an index into the table. (Mentioned in example 9.8 in Page 329)
      
-     - Other hashing\
-    Other hashing function for variable-length data shown in wikipedia: Radix conversion hashing, Rolling hash.
+   - Other hashings\
+     Other hashing function for variable-length data shown in wikipedia: Radix conversion hashing, Rolling hash.
     
 ## Collision resolution techniques 
   Collision resolution techniques can be broken into two classes: **open hashing** (also called **separete chaining**) and closed hashing (also called **open addressing**). The difference between the two has to do with wheather collision are stored outside the table (open hashing), or whether collisions result in storing one of the records at another slot in the table (closed hashing).
