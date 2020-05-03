@@ -120,4 +120,5 @@
   Other implemation techniques: Open hashing with list head cells, self-balancing binary search tree, array hash table, dynamic perfect hashing.
   
 ### Closed hashing
-     
+  Closed hashing stores all records directly in the hash table. Each record R with key value k<sub>R</sub> has a **home position** that is **h**(k<sub>R</sub>), the slot computed by the hash function. If R is to be insertede and another record already occupies R's home position, then R will be stored at some other slot in the talbe.\
+  With this method, a hash collision is resolved by **probing**, or searching through alternate locations in the array (the probe sequence) until either the target record is found, or an unused array slot is found, which indicates that there is no such key in the table
