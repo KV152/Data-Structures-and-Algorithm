@@ -121,4 +121,16 @@
   
 ### Closed hashing
   Closed hashing stores all records directly in the hash table. Each record R with key value k<sub>R</sub> has a **home position** that is **h**(k<sub>R</sub>), the slot computed by the hash function. If R is to be insertede and another record already occupies R's home position, then R will be stored at some other slot in the talbe.\
-  With this method, a hash collision is resolved by **probing**, or searching through alternate locations in the array (the probe sequence) until either the target record is found, or an unused array slot is found, which indicates that there is no such key in the table
+  With this method, a hash collision is resolved by **probing**, or searching through alternate locations in the array (the probe sequence) until either the target record is found, or an unused array slot is found, which indicates that there is no such key in the table.
+  - Bucket Hashing\
+    The M slots of the hash table are divided into B buckets, with each buket consisting of M/B slots. And an overflow bucket of infinite capacity at the end of the table.
+    - The hash function assigns each record to the first slot within one of the buckets.
+    - If this slot is already occupied, then the bucket slots are searched sequentially unitl an open slot is found.
+    - If a bucket is entirely full, then the record is stored in an overflow bucket of infinite capacity at the end of table.
+    - All buckets share the same overflow bucket.
+    - Good for implementing hash tables stored on disk, because the bucket size can be set to the size of a disk block. (Entire bucket is read into memory once for inserting or searching.  Minimize the size of overflow to avoid unnecessary )\
+    Illustration of bucket hashing ![bucket hashing](https://raw.githubusercontent.com/KV152/Data-Structures-and-Algorithm/master/figures/bucket_hashing.PNG)
+  - Variaation of bucket hashing
+    Hashing a key value to some slot in the hash table as though bucketing were not being used. If home position is full, then the collison resolution process is to move down through the table toward the end of the bucket while searching for a free slot in which to store the record. If the bottom of the bucket is reached, then the collision resolution routine wraps around to the top of the bucket to continue the search for an open slot.
+    - For example, assuming that buckets contain eight records, with the first bucket consisting of slots 0 through 7. If a record is hashed to slot 5, the collision resolution process will attempt to insert the record into the table in the order 5, 6, 7, 0, 1, 2, 3, and finally 4. If all slots in this bucket are full, then the record is assigned to the overfolow bucket.
+    - Advantage: Inital collisions are reduced, beacasuse any slotcan be a home position rather than just the first slot in the bucket.
