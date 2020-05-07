@@ -7,6 +7,8 @@
   - [Collision resolution techniques](#collision-resolution-techniques)
     - [Open hashing](#open-hashing)
     - [Closed hashing](#closed-hashing)
+  - [Relative to LeetCode](#relative-to-leetcode)
+    
 ## Overview
 - Feature
   - The process of finding a record using some computation to map its key value to a position in the array is called **hashing**.
@@ -164,4 +166,8 @@
        
 Summary of closed hashing (Source from [open addressing in wikipedia](https://en.wikipedia.org/wiki/Open_addressing "open addressing") and [hash table in wikipedia](https://en.wikipedia.org/wiki/Hash_table#Open_addressing "hash table")):
   - The main tradeoffs between these methods are that linear probing has the best cache performance but is most sensitive to clustering, while double hashing has poor cache performance but exhibits virtually no clustering; quadratic probing falls in-between in both areas. Double hashing can also require more computation than other forms of probing. 
-  - A drawback of all these open addressing schemes is that the number of stored entries cannot exceed the number of slots in the bucket array. In fact, even with good hash functions, their performance dramatically degrades when the load factor grows beyond 0.7 or so. For many applications, these restrictions mandate the use of dynamic resizing, with its attendant costs
+  - A drawback of all these open addressing schemes is that the number of stored entries cannot exceed the number of slots in the bucket array. In fact, even with good hash functions, their performance dramatically degrades when the load factor grows beyond 0.7 or so. For many applications, these restrictions mandate the use of dynamic resizing, with its attendant costs.
+
+## Relative to LeetCode
+  Following problem can be sloved by hashing:
+  - [[1]Two Sum(Easy)](https://github.com/KV152/LeetCode-Solution/blob/master/Two%20Sum.md)
