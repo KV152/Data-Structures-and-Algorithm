@@ -33,6 +33,6 @@ The K-Sum problem can be reduced to two sum problem with (K-2) additional for lo
 | Binary Search | O(n^(K-1)log(n)) + Sorting | O(1) + Sorting |
 
 Summary of K-sum problem:</br>
-Becasue the cost of sorting is constat for all value of K, the two pointers approach is the best techqnuie for solving K-sum problem when K>2. The hashing techqniue is best in both time and space for two-sum problem. The combination of two poiners and sorting algorithm is determined by the space complexity for K-sum problem (K>2). If the space complexity is required, insertion or bubble sort with space complexity O(1) is the best option. Otherwise, quicksort or mergesort is faster in sorting. 
+Becasue the cost of sorting is constat for all value of K, the two pointers approach is the best techqnuie for solving K-sum problem when K>2. The hashing techqniue is best in both time and space for two-sum problem. The combination of two poiners and sorting algorithm is determined by the space complexity for K-sum problem (K>2). If the space complexity is required, insertion or bubble sort with space complexity O(1) are the optimal options. Otherwise, quicksort or mergesort are faster in sorting. 
 
 
