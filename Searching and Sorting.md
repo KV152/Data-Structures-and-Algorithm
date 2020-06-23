@@ -34,5 +34,8 @@ The K-Sum problem can be reduced to two sum problem with (K-2) additional for lo
 
 Summary of K-sum problem:</br>
 Becasue the cost of sorting is constat for all value of K, the two pointers approach is the best techqnuie for solving K-sum problem when K>2. The hashing techqniue is best in both time and space for two-sum problem. The combination of two poiners and sorting algorithm is determined by the space complexity for K-sum problem (K>2). If the space complexity is required, insertion or bubble sort with space complexity O(1) are the optimal options. Otherwise, quicksort or mergesort are faster in sorting. 
+When considering duplicates problem, the staightfoward method to avoid duplicats is by sorting the array and skipping the conunies consecutive same value. Therefore, two pointers approach is the best technique to solve K-sum problem with duplicates problem.
+
+The general solution written in C++ for K-sum can be found in [4-Sum](https://github.com/KV152/LeetCode-Solution/blob/master/4-Sum.md). 
 
 
